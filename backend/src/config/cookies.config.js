@@ -3,7 +3,7 @@ const cookieOptions = {
   secure: true,
   // sameSite: "None",
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: "None",
   // secure: false,
   //maxAge: cookiesExpiryDate,
   path: "/",
