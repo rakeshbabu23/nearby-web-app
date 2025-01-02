@@ -1,10 +1,10 @@
 const cookieOptions = {
   // httpOnly: true,
-  // secure: true,
+  secure: true,
   // sameSite: "None",
   httpOnly: true,
   sameSite: "lax",
-  secure: false,
+  // secure: false,
   //maxAge: cookiesExpiryDate,
   path: "/",
 };
