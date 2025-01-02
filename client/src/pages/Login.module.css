@@ -1,0 +1,115 @@
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color:#fff
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.switchContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color:#fff
+}
+
+.switchText {
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 5px;
+  
+}
+
+@media (max-width:480px){
+
+    .title{
+        font-size: 2rem;
+    }
+    .input{
+        padding:1rem;
+    }
+    .button{
+        padding:1rem 2rem;
+        font-size: 1.2rem;
+    }
+    .switchContainer>p{
+        font-size: 1.2rem;
+    }
+     .switchContainer>a{
+        font-size: 1.2rem;
+    }
+}
+@media (min-width:768px){
+    .container{
+        max-width: 600px;
+    }
+    .title{
+        font-size: 3rem;
+        color:red
+    }
+    .input{
+        padding: 0.75rem;
+        font-size: 1.5rem;
+    }
+    .button{
+        padding: 0.75rem;
+        font-size: 1.5rem;
+    }
+    .switchContainer>p{
+        font-size: 1.5rem;
+    }
+     .switchContainer>a{
+        font-size: 1.5rem;
+    }
+}
+@media (min-width:1025px){
+    .container{
+        max-width: 400px;
+    }
+    .title{
+        font-size: 2rem;
+    }
+    .input{
+        padding: 0.75rem;
+        font-size: 1.2rem;
+    }
+    .button{
+        padding: 0.75rem;
+        font-size: 1.2rem;
+    }
+    .switchContainer>p{
+        font-size: 1.2rem;
+    }
+     .switchContainer>a{
+        font-size: 1.2rem;
+    }
+}

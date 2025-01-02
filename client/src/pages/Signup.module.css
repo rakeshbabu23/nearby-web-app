@@ -1,0 +1,163 @@
+/* Signup.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #0F172A;
+}
+
+.formCard {
+  background: #0F172A;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  
+ 
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+  margin-bottom: 0.5rem;
+}
+
+.otp-btn{
+  all:unset;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.select {
+  background-color: white;
+  cursor: pointer;
+}
+
+.fileUploadContainer {
+  margin-bottom: 1rem;
+}
+
+.fileUploadLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #fff;
+}
+
+.fileUploadInput {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.button:hover {
+  background-color: #2563eb;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.button:disabled {
+  opacity: 0.5; 
+  cursor: not-allowed; 
+  
+}
+
+.switchContainer {
+  margin-top: 1.5rem;
+  text-align: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+ color: #fff;
+}
+
+.switchLink {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+   font-size: 0.875rem;
+}
+
+.switchLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width:480px){
+
+    .switchContainer>p,.switchLink{
+        font-size: 1.2rem;
+    }
+   
+    .button{
+        padding:1rem 2rem;
+        font-size: 1.2rem;
+    }
+    
+     
+}
+
+@media (min-width:768px) and (max-width:1025px){
+ 
+    .formCard{
+      max-width: 600px;
+     
+    }
+    .title{
+      font-size: 3rem;
+    }
+    .input,.select,.button,.fileUploadContainer>label,.fileUploadContainer>input,.switchContainer>p,.switchLink{
+
+      font-size: 1.5rem;
+    }
+    
+}

@@ -1,0 +1,89 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #0F172A;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img{
+    width: 30px;
+    height: 30px;
+}
+
+.logo{
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Poppins';
+    color: #fff;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    border-radius: 2rem;
+    width: 23%;
+   
+}
+
+
+
+.input-box{
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Poppins';
+    border-radius: 2rem;
+}
+
+.search-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+ 
+}
+
+.actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:0.5rem;
+    
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  margin:0 1rem;
+}
+
+.profileImage{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px){
+    .profileImage{
+        width: 2rem;
+        height: 2rem;
+        
+    }
+}

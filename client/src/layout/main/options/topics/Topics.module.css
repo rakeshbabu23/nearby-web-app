@@ -1,0 +1,53 @@
+/* Topics.module.css */
+.wrapper {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    max-height: 30vh;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+}
+.noTags {
+ 
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #888;
+}
+.noTags p{
+text-align: center;
+}
+
+.toggleButton {
+    padding: 0.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.toggleButton:hover {
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}

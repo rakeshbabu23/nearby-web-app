@@ -1,0 +1,27 @@
+
+
+/* Logout.module.css */
+.btn {
+    align-self: stretch;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn:active {
+    transform: scale(0.95);
+    background-color: #e0e0e0;
+}

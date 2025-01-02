@@ -1,0 +1,27 @@
+/* Chip.module.css */
+.chip {
+    display: inline-block;
+    padding: 0.3em 1em;
+    margin: 0.2rem;
+    border-radius: 1rem;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+    border: none;
+}
+
+.chip:hover {
+    background-color: #e0e0e0;
+}
+
+.selected {
+    background-color: #2563eb;
+    color: white;
+}
+
+.selected:hover {
+    background-color: #1d4ed8;
+}

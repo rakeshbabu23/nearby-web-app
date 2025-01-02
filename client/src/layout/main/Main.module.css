@@ -1,0 +1,76 @@
+.main-container{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    
+    align-items: stretch;
+    height: 100vh;
+    
+}
+
+.feedContainer {
+  /* height: 100vh; */
+  /* overflow-y: auto; */
+  overflow-x: hidden;
+  padding: 0rem 0;
+  border:0 2rem;
+  border-color: blue;
+  background-color: #0F172A  ;
+}
+
+.feedContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+
+
+/* Add this to both module CSS files to ensure proper image display */
+.imageHolder {
+  max-height: 500px; /* Limit image height */
+  min-height: 200px; /* Ensure minimum height */
+}
+
+.options{
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  padding:0.5rem;
+}
+
+@media (max-width:765px) {
+    .options{
+      display: none;
+    }
+    .main-container{
+      grid-template-columns: 1fr;
+    }
+    .feedContainer{
+      padding: 0;
+      margin: 0;
+    }
+    .feedContent{
+      max-width:450px;
+      padding: 0;
+      margin: 0;
+    }
+}
+
+/* Scrollbar Styling */
+.feedContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.feedContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.feedContainer::-webkit-scrollbar-thumb {
+  
+  background: #9ca3af;
+  border-radius: 4px;
+}
+
+.feedContainer::-webkit-scrollbar-thumb:hover {
+  background: #0070f3;
+}

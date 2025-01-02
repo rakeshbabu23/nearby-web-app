@@ -1,0 +1,145 @@
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of child elements */
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  height: 100vh;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  background-color: #0F172A;
+}
+
+.uploadSection {
+  flex: 1 1 300px; /* Set a minimum width and allow it to grow */
+}
+
+.formSection {
+  flex: 1 1 300px; /* Set a minimum width and allow it to grow */
+}
+
+.previewArea {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview img,
+.preview video {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.fileInput {
+  display: none;
+}
+label{
+  color:white
+}
+.uploadLabel {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:white
+}
+
+.uploadPlaceholder {
+  text-align: center;
+  color: #666;
+}
+
+.supportedFormats {
+  font-size: 0.875rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton {
+  align-self: flex-end;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: darkred;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.uploadButton {
+  background-color: #0070f3;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.uploadButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack form and upload sections vertically */
+  }
+
+  .uploadSection,
+  .formSection {
+    flex: 1 1 auto; /* Take full width on smaller screens */
+    min-width: 100%; /* Full width */
+  }
+
+  .preview img,
+  .preview video {
+    max-height: 200px; /* Adjust max height on smaller screens */
+  }
+}
