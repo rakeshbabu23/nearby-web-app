@@ -20,9 +20,12 @@ const commentRoutes = require("../routes/comment.route");
 const messageRoutes = require("../routes/message.route");
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://nearby-web-app.vercel.app"], // Frontend URL
-  credentials: true, // Allow sending credentials (cookies)
+  origin: "https://nearby-web-app.vercel.app", // Replace with your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE","PATCH"], // Specify allowed HTTP methods if needed
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
+
 const PORT = process.env.PORT || 8000;
 
 const createApp = () => {
