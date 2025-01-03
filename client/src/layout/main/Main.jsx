@@ -19,9 +19,6 @@ const Main = ({ showChatModal, setShowChatModal, showMenu }) => {
   );
 
   const handleScroll = () => {
-    console.log("Scroll height", window.innerHeight);
-    console.log("Scroll top", document.documentElement.scrollTop);
-    console.log("Scroll height", document.documentElement.scrollHeight);
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
@@ -32,12 +29,7 @@ const Main = ({ showChatModal, setShowChatModal, showMenu }) => {
     }
   };
   useEffect(() => {
-    console.log("Scroll listener added");
     document.querySelector("#feed").addEventListener("scroll", handleScroll);
-    // return () => {
-    //   console.log("Scroll listener removed");
-    //   window.removeEventListener("wheel", handleScroll);
-    // };
   }, []);
 
   return (

@@ -15,7 +15,6 @@ const ChatScreen = ({ person, onClose }) => {
   const roomName = getRoomName(user._id, receiverId);
 
   const [messages, setMessages] = useState([]);
-  console.log("setMessages", messages);
 
   const [socketConnected, setSocketConnected] = useState(false);
   const [connectionError, setConnectionError] = useState(null);
@@ -44,7 +43,6 @@ const ChatScreen = ({ person, onClose }) => {
       pageToFetch,
     });
   };
-  console.log("temporary logs", process.env.API_URL);
   useEffect(() => {
     // Create socket instance
     const socket = io("https://nearby-web-app.onrender.com", {
@@ -60,27 +58,14 @@ const ChatScreen = ({ person, onClose }) => {
       setSocketConnected(true);
       setConnectionError(null);
 
-      // Join room and register user after successful connection
-      socket.emit(
-        "join_room",
-        {
-          senderId: user._id,
-          receiverId,
-        },
-        (response) => {
-          console.log("join_room response:", response);
-        }
-      );
+      socket.emit("join_room", {
+        senderId: user._id,
+        receiverId,
+      });
 
-      socket.emit(
-        "register_user",
-        {
-          userId: user._id,
-        },
-        (response) => {
-          console.log("register_user response:", response);
-        }
-      );
+      socket.emit("register_user", {
+        userId: user._id,
+      });
     });
 
     socket.on("connect_error", (error) => {
