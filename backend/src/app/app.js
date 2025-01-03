@@ -21,7 +21,7 @@ const messageRoutes = require("../routes/message.route");
 
 const corsOptions = {
   origin: "https://nearby-web-app.vercel.app", // Replace with your frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE","PATCH"], // Specify allowed HTTP methods if needed
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Specify allowed HTTP methods if needed
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
@@ -53,7 +53,7 @@ const createApp = () => {
   });
   io.attach(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://nearby-web-app.vercel.app",
     },
   });
   app.io = io;
