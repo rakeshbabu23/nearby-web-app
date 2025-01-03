@@ -44,9 +44,10 @@ const ChatScreen = ({ person, onClose }) => {
       pageToFetch,
     });
   };
+  console.log("temporary logs", process.env.API_URL);
   useEffect(() => {
     // Create socket instance
-    const socket = io(process.env.API_URL, {
+    const socket = io("https://nearby-web-app.onrender.com", {
       transports: ["websocket"],
       upgrade: false,
       reconnection: true,
