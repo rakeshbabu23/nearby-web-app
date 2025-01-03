@@ -54,8 +54,11 @@ const createApp = () => {
   io.attach(server, {
     cors: {
       origin: "https://nearby-web-app.vercel.app",
+      methods: ["GET", "POST"],
+      credentials: true,
     },
   });
+
   app.io = io;
 };
 
