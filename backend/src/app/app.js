@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const http = require("http");
+const fs = require("fs");
+const https = require("https");
 
 const { errorMiddleware } = require("../middlewares/error.middleware");
 const { corsOptionsDelegate } = require("../config/cors.config");
@@ -48,8 +50,11 @@ const createApp = () => {
   app.use("/messages", messageRoutes);
 
   app.use(errorMiddleware);
-  const server = app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  const key = fs.readFileSync(process.env.SSL_KEY_PATH, "utf8");
+  const cert = fs.readFileSync(process.env.SSL_CERT_PATH, "utf8");
+  const server = https.createServer({ key, cert }, app);
+  server.listen(PORT, () => {
+    console.log(`Server running at https://localhost:${PORT}`);
   });
   io.attach(server, {
     cors: {
