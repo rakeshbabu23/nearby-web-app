@@ -65,7 +65,6 @@ const createUserWithFirebaseToken = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    //  console.log("i am in user login", req.body);
     const { email, password, userLocation } = req.body;
     if (!email) {
       throw new BadRequestError("Email is required", {
@@ -83,7 +82,6 @@ const login = async (req, res, next) => {
       userLocation
     );
     res.setHeader("Access-Control-Allow-Credentials", "true");
-    //console.log("User", accessToken, refreshToken);
     res.cookie("refreshToken", refreshToken, {
       ...cookieOptions,
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -92,12 +90,10 @@ const login = async (req, res, next) => {
       ...cookieOptions,
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
-    // console.log("sssssssssssssssssssssssssssss in");
     res
       .status(200)
       .json({ message: "Logged in successfully", data: { user, accessToken } });
   } catch (e) {
-    // console.log("errrror in login", e.message);
     if (e instanceof APIError) {
       return next(e);
     }
@@ -107,11 +103,9 @@ const login = async (req, res, next) => {
 
 const getAccessTokenFromRefresh = async (req, res, next) => {
   try {
-    //console.log("getAccessTokenFromRefresh");
     const token = await authService.accessTokenFromRefresh(req);
     return res.status(200).json({ data: token });
   } catch (e) {
-    // console.log("getAccessTokenFromRefresheeee", e.message);
     if (e instanceof APIError) {
       return next(e);
     }
@@ -122,7 +116,6 @@ const getAccessTokenFromRefresh = async (req, res, next) => {
 const validUser = async (req, res, next) => {
   try {
     const authHeader = req.header("Authorization");
-    console.log("Authent", authHeader);
     if (!authHeader) {
       return next(
         new UnauthorizedError("User not authenticated", {
@@ -193,7 +186,6 @@ const verifyOtp = async (req, res, next) => {
     await authService.verifyOtp(email, otp);
     res.status(200).json({ message: "OTP verified successfully" });
   } catch (e) {
-    console.log(e);
     if (e instanceof APIError) {
       return next(e);
     }

@@ -361,10 +361,7 @@ const uploadProfilePicture = async (file, userId, directory) => {
         ContentType: file.mimetype,
       },
     }).done();
-    console.log(
-      "Profile picture uploaded successfully:",
-      uploadResult.Location
-    );
+   
     return uploadResult.Location;
   } catch (error) {
     console.error("Error uploading profile picture:", error);

@@ -20,7 +20,6 @@ const createUserWithFirebaseToken = async (
   gender,
   profileImage
 ) => {
-  console.log("Creating user", name, email, password, profileImage);
   //const parsedLocation = validateCoordinates(userLocation);
   const checkEmailExists = await User.findOne({ email: email });
   if (checkEmailExists) {
@@ -28,14 +27,12 @@ const createUserWithFirebaseToken = async (
       message: "Email already in use",
     });
   }
-  console.log("11111111111", name, email, password, profileImage);
   let accessToken = null,
     refreshToken = null;
   // const sanitizedCoordinates = userLocation
   //   .replace(/[\[\]']/g, "") // Remove brackets and single quotes
   //   .split(",") // Split by comma
   //   .map(Number); // Convert to numbers
-  console.log("222222222", name, email, password, profileImage);
   if (!checkEmailExists) {
     let address = "";
     const response = await axios.get(
@@ -53,7 +50,6 @@ const createUserWithFirebaseToken = async (
       },
       address,
     });
-    console.log("Creating user", name, email, password, profileImage);
     if (profileImage) {
       const profilePictureUrl = await uploadProfilePicture(
         profileImage,
@@ -63,13 +59,11 @@ const createUserWithFirebaseToken = async (
       newUser.profileImage = profilePictureUrl;
       await newUser.save();
     }
-    console.log("33333333333333", name, email, password, profileImage);
     accessToken = generateAccessToken(
       { userId: newUser._id, email, name },
       "1d",
       process.env.JWT_ACCESS_SECRET
     );
-    console.log("44444444444", name, email, password, profileImage);
     refreshToken = generateAccessToken(
       {
         userId: newUser._id,
@@ -79,12 +73,10 @@ const createUserWithFirebaseToken = async (
       "15d",
       process.env.JWT_REFRESH_SECRET
     );
-    console.log("5555555555555", name, email, password, profileImage);
     await Session.create({
       userId: newUser._id,
       refreshToken,
     });
-    console.log("777777777777", name, email, password, profileImage);
     return { accessToken, refreshToken, user: newUser };
   } else {
     await Session.deleteOne({ userId: createUser._id });
@@ -107,17 +99,14 @@ const createUserWithFirebaseToken = async (
 };
 
 const login = async (email, password, location) => {
-  console.log("Logging in", email, password, location);
   const user = await User.findOne({ email });
   if (!user) {
     throw new UnauthorizedError("Email not found.Please sign up");
   }
-  console.log("L111111111111111111ogging in", email, password, location);
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
     throw new UnauthorizedError("Invalid email or password");
   }
-  console.log("Lo2222222222222222gging in", email, password, location);
   let updatedUser = null;
   try {
     if (!Array.isArray(location) || location.length !== 2) {
@@ -127,13 +116,11 @@ const login = async (email, password, location) => {
     }
 
     const sanitizedCoordinates = location.map(Number); // Ensure all elements are numbers
-    console.log("Sanitized coordinates", sanitizedCoordinates);
 
     // Reverse geocoding
     const response = await axios.get(
       `https://us1.locationiq.com/v1/reverse?key=pk.b947b52cdc557100cbb97527d1289281&lat=${sanitizedCoordinates[1]}&lon=${sanitizedCoordinates[0]}&format=json`
     );
-    console.log("locationiq response", response.data);
     let address = response.data.display_name;
     user.location = {
       type: "Point",
@@ -157,13 +144,11 @@ const login = async (email, password, location) => {
   );
   await Session.deleteOne({ userId: updatedUser._id });
   await Session.create({ userId: updatedUser._id, refreshToken });
-  console.log("Updated user");
   return { accessToken, refreshToken, user };
 };
 
 const accessTokenFromRefresh = async (req) => {
   try {
-    // console.log("Access token from refresh", req.cookies);
     const { refreshToken } = req.cookies;
     if (!refreshToken) {
       throw new UnauthorizedError("User not authenticated", {
@@ -238,7 +223,6 @@ const sendOTPToEmail = async (email) => {
 
 const verifyOtp = async (email, otp) => {
   const otpObj = await Otp.findOne({ email });
-  console.log("found", otpObj);
   if (!otpObj) {
     throw NotFoundError("OTP not found.", {
       message: "Please request for otp verification",

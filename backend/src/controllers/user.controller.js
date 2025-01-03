@@ -10,7 +10,6 @@ const {
 const updateUser = async (req, res, next) => {
   try {
     const { userId } = req.cookies;
-    console.log("userId", userId);
     const file = req.file;
     const updatedUser = await userService.updateUser(userId, req.body, file);
     res.status(200).json({ data: updatedUser });

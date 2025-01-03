@@ -70,7 +70,6 @@ const createPost = async (userId, postInfo, file) => {
 
 const getPosts = async (userId, filters, page = 1, limit = 10) => {
   // Fetch user by ID
-  console.log("Fetching posts", userId, filters, page, limit);
   const user = await User.findById(userId);
   if (!user) {
     throw new NotFoundError("User not found", {
@@ -172,7 +171,7 @@ const getPosts = async (userId, filters, page = 1, limit = 10) => {
   ];
 
   const posts = await Post.aggregate(pipeline);
-  //console.log("posts", posts);
+
   const updatedPosts = await Promise.all(
     posts.map(async (post) => {
       const checkedUserLiked = await Like.findOne({

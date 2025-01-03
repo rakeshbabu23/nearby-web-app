@@ -33,7 +33,6 @@ const createPost = async (req, res, next) => {
 
 const getPosts = async (req, res, next) => {
   try {
-    console.log("GET POST", req.query);
     const { userId } = req.cookies;
     if (!userId) {
       throw new UnauthorizedError("User not authenticated", {
