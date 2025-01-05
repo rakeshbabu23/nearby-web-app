@@ -61,7 +61,7 @@ const getMessages = async (senderId, receiverId, chatId, page) => {
     chat = await isChatExists(senderId, receiverId);
   }
   const messages = await Message.find({ chatId: chat._id })
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: 1 })
     .skip((page - 1) * 80)
     .limit(80);
   return { messages, chatId: chat._id };
