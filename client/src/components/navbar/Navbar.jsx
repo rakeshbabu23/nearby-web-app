@@ -25,10 +25,6 @@ const Navbar = ({ setShowMenu }) => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <nav className={styles.navbar}>
       {/* Logo Section */}
@@ -46,7 +42,10 @@ const Navbar = ({ setShowMenu }) => {
         <div className={styles.profile} onClick={() => navigate("/profile")}>
           {/* <FaUserCircle size={24} color="white" /> */}
           <img
-            src={userInfo?.profileImage}
+            src={
+              userInfo?.profileImage ||
+              "https://pearlss4development.org/wp-content/uploads/2020/05/profile-placeholder.jpg"
+            }
             alt="profile"
             className={styles.profileImage}
           />

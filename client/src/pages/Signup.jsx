@@ -20,6 +20,10 @@ const Signup = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [otpVerified, setOtpVerified] = useState(false);
+  const [otpSendingLoading, setOtpSendingLoading] = useState({
+    state: false,
+    message: "Send OTP",
+  });
 
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
@@ -44,12 +48,24 @@ const Signup = () => {
 
   const handleSendOtp = async () => {
     try {
+      setOtpSendingLoading({
+        state: true,
+        message: "Sending",
+      });
       await apiClient.post("/auth/send-otp", {
         email: formData.email,
+      });
+      setOtpSendingLoading({
+        state: false,
+        message: "Re-send",
       });
       setOtpSent(true);
       toast.success("OTP sent successfully");
     } catch (e) {
+      setOtpSendingLoading({
+        state: false,
+        message: "Failed",
+      });
       console.error("Failed to send OTP", e);
       toast.error(
         e?.response?.data?.message || "Error in sending otp.Please try again"
@@ -99,7 +115,7 @@ const Signup = () => {
               className={styles["otp-btn"]}
               onClick={() => handleSendOtp()}
             >
-              Send otp
+              {otpSendingLoading.message}
             </button>
           </div>
         )}

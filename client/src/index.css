@@ -27,3 +27,21 @@ button {
   background: none;
   cursor: pointer;
 }
+
+/* Scrollbar Styling */
+*::-webkit-scrollbar{
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+*::-webkit-scrollbar-thumb{
+  background: #aaaa;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #0070f3;
+}

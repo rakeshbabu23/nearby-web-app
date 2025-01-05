@@ -107,7 +107,7 @@ const Main = ({ showChatModal, setShowChatModal, showMenu }) => {
         <div
           style={{
             width: showMenu ? "100%" : "40%",
-            height: showMenu ? "100vh" : "80vh",
+            height: "100vh",
             backgroundColor: "rgba(0,0,0,0.5)",
             zIndex: 1000,
             position: "fixed",

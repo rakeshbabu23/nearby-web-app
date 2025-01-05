@@ -22,7 +22,7 @@ const ChatScreen = ({ person, onClose }) => {
   const socketRef = useRef(null);
   // Initialize socket connection
   React.useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "instant" });
   }, [messages]);
 
   const formatMessageTime = (timestamp) => {
@@ -183,7 +183,7 @@ const ChatScreen = ({ person, onClose }) => {
             onChange={(e) => setNewMessage(e.target.value)}
             disabled={!socketConnected}
             className={styles.input}
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+            onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <button
             onClick={handleSendMessage}
