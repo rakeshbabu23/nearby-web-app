@@ -251,7 +251,6 @@ const likePost = async (userId, postId) => {
       postId: postId,
     });
     post.likes -= 1;
-    return;
   } else {
     const like = new Like({ userId, postId });
     await like.save();
