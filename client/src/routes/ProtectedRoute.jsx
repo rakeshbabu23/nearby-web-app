@@ -39,14 +39,18 @@ const ProtectedRoute = () => {
           setToken(token);
           setIsLoggedIn(true);
         } catch (e) {
-          toast.error("Unauthorized. Please log in again.");
+          if (isLoggedIn) {
+            toast.error("Unauthorized. Please log in again.");
+          }
           setToken(null);
           navigate("/login");
           setIsLoggedIn(false);
         }
       } else {
         // Handle other unexpected errors or show appropriate messages
-        toast.error("Unauthorized. Please log in again.");
+        if (isLoggedIn) {
+          toast.error("Unauthorized. Please log in again.");
+        }
         setToken(null);
         navigate("/login");
         setIsLoggedIn(false);

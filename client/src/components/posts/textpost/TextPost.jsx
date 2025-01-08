@@ -37,6 +37,7 @@ const TextPost = ({ post }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { likedPosts, setLikedPosts } = useAuth2();
+  const [currentLikedPosts, setCurrentLikedPosts] = useState([]);
   const { mutate: doLike, isLoading: likePostLoading } = useMutation({
     mutationFn: async (postId) => {
       const response = await apiClient.post(`/post/like`, {
@@ -50,6 +51,7 @@ const TextPost = ({ post }) => {
   });
   const handleLike = async (e, postId) => {
     e.stopPropagation();
+
     setLikedPosts((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(postId)) {
@@ -64,7 +66,10 @@ const TextPost = ({ post }) => {
     if (post.isUserLiked) {
       setLikedPosts((prev) => {
         const newSet = new Set(prev);
-        newSet.add(post.isUserLiked);
+        if (post.isUserLiked) {
+          newSet.add(post._id);
+        }
+
         return newSet;
       });
     }
@@ -105,6 +110,13 @@ const TextPost = ({ post }) => {
             className={styles.actionButton}
             onClick={(e) => {
               e.stopPropagation();
+              setCurrentLikedPosts(
+                currentLikedPosts.includes(post._id)
+                  ? currentLikedPosts.filter(
+                      (likedPost) => likedPost !== post._id
+                    )
+                  : [...currentLikedPosts, post._id]
+              );
               handleLike(e, post._id);
               doLike(post._id);
             }}
@@ -116,7 +128,13 @@ const TextPost = ({ post }) => {
               size={20}
             />
             <span>
-              {likedPosts.has(post._id) ? post.likes + 1 : post.likes}
+              {likedPosts.has(post._id) && currentLikedPosts.includes(post._id)
+                ? post.likes + 1
+                : likedPosts.has(post._id)
+                ? post.likes
+                : post.likes > 0
+                ? post.likes - 1
+                : 0}
             </span>
           </button>
           <button className={styles.actionButton}>

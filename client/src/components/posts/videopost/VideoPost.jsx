@@ -6,6 +6,7 @@ import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { useAuth2 } from "../../../contexts/User/UserContext";
 import apiClient from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const Header = ({ profileImage, name, time }) => {
   const formatDate = (dateString) => {
@@ -35,10 +36,21 @@ const Header = ({ profileImage, name, time }) => {
 
 const VideoPost = ({ post }) => {
   const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const { likedPosts, setLikedPosts } = useAuth2();
+  const [currentLikedPosts, setCurrentLikedPosts] = useState([]);
+  const { mutate: doLike, isLoading: likePostLoading } = useMutation({
+    mutationFn: async (postId) => {
+      const response = await apiClient.post(`/post/like`, {
+        postId,
+      });
+      return response.data.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
   const videoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   const handleLike = async (e, postId) => {
     e.stopPropagation();
@@ -128,15 +140,34 @@ const VideoPost = ({ post }) => {
         <div className={styles.footer}>
           <button
             className={styles.actionButton}
-            onClick={(e) => handleLike(e, post._id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentLikedPosts(
+                currentLikedPosts.includes(post._id)
+                  ? currentLikedPosts.filter(
+                      (likedPost) => likedPost !== post._id
+                    )
+                  : [...currentLikedPosts, post._id]
+              );
+              handleLike(e, post._id);
+              doLike(post._id);
+            }}
           >
             <Heart
               className={`${styles.icon} ${
-                post.isUserLiked ? styles.liked : ""
+                likedPosts.has(post._id) ? styles.liked : ""
               }`}
               size={20}
             />
-            <span>{post.likes}</span>
+            <span>
+              {likedPosts.has(post._id) && currentLikedPosts.includes(post._id)
+                ? post.likes + 1
+                : likedPosts.has(post._id)
+                ? post.likes
+                : post.likes > 0
+                ? post.likes - 1
+                : 0}
+            </span>
           </button>
           <button className={styles.actionButton}>
             <MessageCircle className={styles.icon} size={20} />
